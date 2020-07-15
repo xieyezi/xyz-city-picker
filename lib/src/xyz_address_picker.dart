@@ -22,7 +22,7 @@ class AddressPicker extends StatefulWidget {
 
   /// 选择事件
   final Function(int, String, String) onChanged; // 参数分别为下标、id、name
-  const AddressPicker({
+  AddressPicker({
     Key key,
     @required this.onChanged,
     @required this.province,
@@ -62,7 +62,7 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
       _cityList = widget.cityList ?? [];
       _districtList = widget.districtList ?? [];
       _mList = widget.provinceList ?? [];
-      _tabController.animateTo(_index, duration: const Duration(microseconds: 0));
+      _tabController.animateTo(_index, duration: Duration(microseconds: 0));
     });
   }
 
@@ -153,16 +153,16 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
                 Container(
                   width: double.infinity,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: const Text(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
                     '地址选择',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
                 Positioned(
                   child: InkWell(
-                    onTap: () => {},
-                    child: const SizedBox(
+                    onTap: () => {Navigator.pop(context)},
+                    child: SizedBox(
                       height: 16.0,
                       width: 16.0,
                       child: Icon(

@@ -23,20 +23,27 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
   String province = '';
   String city = '';
   String street = '';
-  List<AddressModel> provinceList = [];
-  List<AddressModel> cityList = [];
-  List<AddressModel> streetList = [];
+  List provinceList = [
+    {'name': "重庆市", 'id': '1'},
+    {'name': "湖南省", 'id': '2'},
+    {'name': "湖北省", 'id': '3'},
+    {'name': "安徽省", 'id': '4'},
+  ];
+  List cityList = [
+    {'name': "巴南区", 'id': '1'},
+    {'name': "北碚区", 'id': '2'},
+    {'name': "渝中区", 'id': '3'},
+    {'name': "南岸区", 'id': '4'},
+  ];
+  List streetList = [
+    {'name': "花溪街道", 'id': '1'},
+    {'name': "李家沱街道", 'id': '2'},
+    {'name': "凤凰街道", 'id': '3'},
+  ];
 
   @override
   void initState() {
     super.initState();
-    provinceList.add(AddressModel(id: '1', name: '重庆市'));
-    provinceList.add(AddressModel(id: '2', name: '四川省'));
-    provinceList.add(AddressModel(id: '3', name: '湖南省'));
-    provinceList.add(AddressModel(id: '4', name: '湖北省'));
-    provinceList.add(AddressModel(id: '5', name: '安徽省'));
-    cityList.add(AddressModel(id: '1', name: '巴南区'));
-    streetList.add(AddressModel(id: '1', name: '花溪街道'));
   }
 
   @override
@@ -76,9 +83,9 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
     String province,
     String city,
     String street,
-    List<AddressModel> provinceList,
-    List<AddressModel> cityList,
-    List<AddressModel> streetList,
+    List provinceList,
+    List cityList,
+    List streetList,
     BuildContext context,
   }) {
     TextStyle labelStyle = TextStyle(
@@ -132,9 +139,9 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
     String province,
     String city,
     String street,
-    List<AddressModel> provinceList,
-    List<AddressModel> cityList,
-    List<AddressModel> streetList,
+    List provinceList,
+    List cityList,
+    List streetList,
     BuildContext context,
   }) {
     showModalBottomSheet(
@@ -151,16 +158,10 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
           districtList: streetList,
           onChanged: (index, id, name) {
             print(index.toString() + ',' + id + ',' + name);
+            // TODO:做其他事情
           },
         );
       },
     );
   }
-}
-
-class AddressModel {
-  String name;
-  String id;
-
-  AddressModel({this.name, this.id});
 }
