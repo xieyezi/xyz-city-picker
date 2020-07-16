@@ -134,7 +134,7 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
     setListAndChangeTab();
     if (_index > 2) {
       setIndex(2);
-      // MyNavigator.pop(context: context);
+      Navigator.pop(context);
     }
     _controller.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
     _tabController.animateTo(_index);

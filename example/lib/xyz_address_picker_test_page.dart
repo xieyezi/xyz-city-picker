@@ -19,6 +19,8 @@ class XYZAddressPickerTestPageContainer extends StatefulWidget {
   _XYZAddressPickerTestPageContainerState createState() => _XYZAddressPickerTestPageContainerState();
 }
 
+typedef MyOnChange = Function(int index, String id, String name);
+
 class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTestPageContainer> {
   String province = '';
   String city = '';
@@ -48,6 +50,11 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
 
   @override
   Widget build(BuildContext context) {
+    TextStyle labelStyle = TextStyle(
+      color: Color(0xFF4A4A4A),
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text('地址选择器'),
@@ -61,75 +68,68 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
             height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.bottom - 60,
             child: Column(
               children: <Widget>[
-                _buildChooseCity(
-                  province: province,
-                  city: city,
-                  street: street,
-                  provinceList: provinceList,
-                  cityList: cityList,
-                  streetList: streetList,
-                  context: context,
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () => _showBottomSheet(
+                    province: province,
+                    city: city,
+                    street: street,
+                    provinceList: provinceList,
+                    cityList: cityList,
+                    streetList: streetList,
+                    context: context,
+                    onChnage: (int index, String id, String name) {
+                      switch (index) {
+                        case 0:
+                          this.setState(() {
+                            province = name;
+                          });
+                          break;
+                        case 1:
+                          this.setState(() {
+                            city = name;
+                          });
+                          break;
+                        case 2:
+                          this.setState(() {
+                            street = name;
+                          });
+                          break;
+                      }
+                    },
+                  ),
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(width: 70, child: Text('收货地址：', style: labelStyle)),
+                            SizedBox(width: 30),
+                            Text(province == '' ? '选择所在地区' : province + city + street)
+                          ],
+                        ),
+                        Container(
+                          width: 50,
+                          child: Center(
+                            child: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Color(0xFF000000),
+                              size: 20.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  /// 选择省市区
-  Widget _buildChooseCity({
-    String province,
-    String city,
-    String street,
-    List provinceList,
-    List cityList,
-    List streetList,
-    BuildContext context,
-  }) {
-    TextStyle labelStyle = TextStyle(
-      color: Color(0xFF4A4A4A),
-      fontSize: 14,
-      fontWeight: FontWeight.normal,
-    );
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () => _showBottomSheet(
-        province: province,
-        city: city,
-        street: street,
-        provinceList: provinceList,
-        cityList: cityList,
-        streetList: streetList,
-        context: context,
-      ),
-      child: Container(
-        height: 50,
-        padding: EdgeInsets.only(left: 15, right: 15),
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(width: 70, child: Text('收货地址：', style: labelStyle)),
-                SizedBox(width: 30),
-                Text('选择所在地区')
-              ],
-            ),
-            Container(
-              width: 50,
-              child: Center(
-                child: Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Color(0xFF000000),
-                  size: 20.0,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -143,24 +143,23 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
     List cityList,
     List streetList,
     BuildContext context,
+    MyOnChange onChnage,
   }) {
     showModalBottomSheet(
       context: context,
-      // 使用true则高度不受16分之9的最高限制
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return AddressPicker(
-          province: province,
-          city: city,
-          district: street,
-          provinceList: provinceList,
-          cityList: cityList,
-          districtList: streetList,
-          onChanged: (index, id, name) {
-            print(index.toString() + ',' + id + ',' + name);
-            // TODO:做其他事情
-          },
-        );
+        return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+          return AddressPicker(
+            province: province,
+            city: city,
+            district: street,
+            provinceList: provinceList,
+            cityList: cityList,
+            districtList: streetList,
+            onChanged: onChnage,
+          );
+        });
       },
     );
   }
