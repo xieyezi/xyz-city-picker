@@ -2,8 +2,6 @@
 
 一个仿京东的flutter 地址选择器
 
-### 开源不易😄😄😄，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！
-
 **<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_address_picker/changelog)</u>**
 
 
@@ -27,7 +25,8 @@
 添加后打开Terminal，执行flutter packages get
 
 #### 2、使用
-- **强烈建议你先clone下本仓库，查看example目录的内容**
+
+**强烈建议你先clone下本仓库，查看example目录的内容**
 
 必须传入的参数有:
 
@@ -79,3 +78,5 @@ typedef MyOnChange = Function(int index, String id, String name);
 
 
 ### 如你想接收更新消息，你可以Watch下，有问题请提到Issues.
+
+### 开源不易😄😄😄，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！
