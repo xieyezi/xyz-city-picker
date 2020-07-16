@@ -30,14 +30,15 @@
 
 必须传入的参数有:
 
-| 参数         | 含义       |
-| ------------ | ---------- |
-| province     | 选择的省份 |
-| city         | 选择的城市 |
-| street       | 选择的街道 |
-| provinceList | 省份列表   |
-| cityList     | 城市列表   |
-| districtList | 街道列表   |
+| 参数         | 含义       | 类型                                |
+| ------------ | ---------- | ----------------------------------- |
+| province     | 选择的省份 | String                              |
+| city         | 选择的城市 | String                              |
+| street       | 选择的街道 | String                              |
+| provinceList | 省份列表   | {'name': "provinceName", 'id': '1'} |
+| cityList     | 城市列表   | {'name': "cityName", 'id': '1'}     |
+| districtList | 街道列表   | {'name': "districtName", 'id': '1'} |
+
 
 > 注意：xyz_address_picker 因为是弹出框，所以需要配合showModalBottomSheet使用
 使用如下：
