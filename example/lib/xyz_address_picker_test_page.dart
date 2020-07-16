@@ -149,17 +149,15 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-          return AddressPicker(
-            province: province,
-            city: city,
-            district: street,
-            provinceList: provinceList,
-            cityList: cityList,
-            districtList: streetList,
-            onChanged: onChnage,
-          );
-        });
+        return AddressPicker(
+          province: province,
+          city: city,
+          district: street,
+          provinceList: provinceList,
+          cityList: cityList,
+          districtList: streetList,
+          onChanged: onChnage,
+        );
       },
     );
   }
