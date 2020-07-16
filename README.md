@@ -12,7 +12,7 @@
 
 ### Gif效果图
 
-<a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" width="400" height="860" align="center" style="max-width:100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" align="center" style="max-width:100%;"></a>
 
 ### 如何使用
 目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点我去Pub官网查看](https://pub.dev/packages/xyz_address_picker)
