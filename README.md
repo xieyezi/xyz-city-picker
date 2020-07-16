@@ -7,21 +7,18 @@
 **<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_address_picker/changelog)</u>**
 
 
-> 如你想接收更新消息，你可以Watch下，有问题请提到Issues.
-
-
-## 导航
+### 导航
 - [Gif效果图](#Gif效果图)
 - [如何使用](#如何使用)
 
 
-## Gif效果图
+### Gif效果图
 
 <a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" width="400" height="860" align="center" style="max-width:100%;"></a>
 
-## 如何使用
+### 如何使用
 目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点我去Pub官网查看](https://pub.dev/packages/xyz_address_picker)
-### 1、添加xyz_address_picker package
+#### 1、添加xyz_address_picker package
 打开pubspec.yaml文件
 添加如下代码
 ``` dart
@@ -29,7 +26,7 @@
 ```
 添加后打开Terminal，执行flutter packages get
 
-### 2、使用
+#### 2、使用
 - **强烈建议你先clone下本仓库，查看example目录的内容**
 
 必须传入的参数有:
@@ -79,3 +76,6 @@
 typedef MyOnChange = Function(int index, String id, String name);
 ```
 其中`index` 为`0`、`1`、`2`，分别标识`province`、`city`、`district` ，`id`和`name`则为对应的值。
+
+
+### 如你想接收更新消息，你可以Watch下，有问题请提到Issues.
