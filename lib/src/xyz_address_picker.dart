@@ -108,9 +108,8 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
         setState(() {});
         break;
       case 3:
-        // this.setState(() {
-        //   _mList = _districtList;
-        // });
+        _mList = _districtList;
+        setState(() {});
         break;
     }
   }
