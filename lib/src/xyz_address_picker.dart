@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
+import 'package:xyz_address_picker/meta/city.dart';
+import 'package:xyz_address_picker/meta/meta.dart';
+import 'package:xyz_address_picker/meta/province.dart';
+import 'package:xyz_address_picker/meta/town.dart';
 
 /// 省市区选择器(使用示例见address_manage)
 class AddressPicker extends StatefulWidget {
@@ -11,15 +16,6 @@ class AddressPicker extends StatefulWidget {
   /// 区
   final String district;
 
-  /// 省列表
-  final List provinceList;
-
-  /// 市列表
-  final List cityList;
-
-  /// 区列表
-  final List districtList;
-
   /// 选择事件
   final Function(int, String, String) onChanged; // 参数分别为下标、id、name
   AddressPicker({
@@ -28,9 +24,6 @@ class AddressPicker extends StatefulWidget {
     @required this.province,
     @required this.city,
     @required this.district,
-    @required this.provinceList,
-    @required this.cityList,
-    @required this.districtList,
   }) : super(key: key);
 
   @override
@@ -58,10 +51,8 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
       _myTabs[0] = Tab(text: widget.province == '' || widget.province == null ? '请选择' : widget.province);
       _myTabs[1] = Tab(text: widget.city ?? '');
       _myTabs[2] = Tab(text: widget.district ?? '');
-      _provinceList = widget.provinceList ?? [];
-      _cityList = widget.cityList ?? [];
-      _districtList = widget.districtList ?? [];
-      _mList = widget.provinceList ?? [];
+      _provinceList = provincesData ?? [];
+      _mList = provincesData ?? [];
       _tabController.animateTo(_index, duration: Duration(microseconds: 0));
     });
   }
@@ -99,25 +90,27 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
     }
   }
 
-  void setListAndChangeTab() {
+  void setListAndChangeTab(index) {
     switch (_index) {
       case 1:
-        this.setState(() {
-          _mList = _cityList;
-          _myTabs[1] = Tab(text: '请选择');
-          _myTabs[2] = Tab(text: '');
-        });
+        _mList = findCityByProvinceName(_mList[index]['id']);
+        _cityList = _mList;
+        print(_mList);
+        _myTabs[1] = Tab(text: '请选择');
+        _myTabs[2] = Tab(text: '');
+        setState(() {});
         break;
       case 2:
-        this.setState(() {
-          _mList = _districtList;
-          _myTabs[2] = Tab(text: '请选择');
-        });
+        _mList = findCountyByCity(_mList[index]['id']);
+        _districtList = _mList;
+        print(_mList);
+        _myTabs[2] = Tab(text: '请选择');
+        setState(() {});
         break;
       case 3:
-        this.setState(() {
-          _mList = _districtList;
-        });
+        // this.setState(() {
+        //   _mList = _districtList;
+        // });
         break;
     }
   }
@@ -131,13 +124,25 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
       _positions[_index] = index;
       _index = _index + 1;
     });
-    setListAndChangeTab();
+    setListAndChangeTab(index);
     if (_index > 2) {
       setIndex(2);
       Navigator.pop(context);
     }
     _controller.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
     _tabController.animateTo(_index);
+  }
+
+  // 根据province寻找city
+  List findCityByProvinceName(String provinceId) {
+    List cityList = citiesData[provinceId] ?? [];
+    return cityList;
+  }
+
+  // 根据city寻找county
+  List findCountyByCity(String cityId) {
+    List countyList = countiesData[cityId] ?? [];
+    return countyList;
   }
 
   @override

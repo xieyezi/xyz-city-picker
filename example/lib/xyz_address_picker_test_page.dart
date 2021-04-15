@@ -25,23 +25,6 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
   String province = '';
   String city = '';
   String street = '';
-  List provinceList = [
-    {'name': "重庆市", 'id': '1'},
-    {'name': "湖南省", 'id': '2'},
-    {'name': "湖北省", 'id': '3'},
-    {'name': "安徽省", 'id': '4'},
-  ];
-  List cityList = [
-    {'name': "巴南区", 'id': '1'},
-    {'name': "北碚区", 'id': '2'},
-    {'name': "渝中区", 'id': '3'},
-    {'name': "南岸区", 'id': '4'},
-  ];
-  List streetList = [
-    {'name': "花溪街道", 'id': '1'},
-    {'name': "李家沱街道", 'id': '2'},
-    {'name': "凤凰街道", 'id': '3'},
-  ];
 
   @override
   void initState() {
@@ -73,12 +56,10 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
                   onTap: () => _showBottomSheet(
                     province: province,
                     city: city,
-                    street: street,
-                    provinceList: provinceList,
-                    cityList: cityList,
-                    streetList: streetList,
                     context: context,
                     onChnage: (int index, String id, String name) {
+                      print('$index-$id-$name');
+
                       switch (index) {
                         case 0:
                           this.setState(() {
@@ -139,9 +120,6 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
     String province,
     String city,
     String street,
-    List provinceList,
-    List cityList,
-    List streetList,
     BuildContext context,
     MyOnChange onChnage,
   }) {
@@ -153,9 +131,6 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
           province: province,
           city: city,
           district: street,
-          provinceList: provinceList,
-          cityList: cityList,
-          districtList: streetList,
           onChanged: onChnage,
         );
       },
