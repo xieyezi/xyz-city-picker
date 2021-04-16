@@ -1,8 +1,8 @@
-# xyz_address_picker
+# xyz_city_picker
 
 一个仿京东的flutter 地址选择器
 
-**<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_address_picker/changelog)</u>**
+**<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_city_picker/changelog)</u>**
 
 
 ### 导航
@@ -15,12 +15,12 @@
 <a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" align="center" style="max-width:100%;"></a>
 
 ### 如何使用
-目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点这里去Pub官网查看](https://pub.dev/packages/xyz_address_picker)
-#### 1、添加xyz_address_picker package
+目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点这里去Pub官网查看](https://pub.dev/packages/xyz_city_picker)
+#### 1、添加xyz_city_picker package
 打开pubspec.yaml文件
 添加如下代码
 ``` dart
-  xyz_address_picker : ^1.0.1
+  xyz_city_picker : ^1.0.1
 ```
 添加后打开Terminal，执行flutter packages get
 
@@ -40,7 +40,7 @@
 | districtList | 街道列表   | {'name': "districtName", 'id': '1'} |
 
 
-> 注意：xyz_address_picker 因为是弹出框，所以需要配合showModalBottomSheet使用
+> 注意：xyz_city_picker 因为是弹出框，所以需要配合showModalBottomSheet使用
 使用如下：
 ```dart
   /// 省市区选择器

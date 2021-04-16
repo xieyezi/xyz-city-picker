@@ -1,5 +1,5 @@
+import 'package:example/xyz_city_picker_example_page.dart';
 import 'package:flutter/material.dart';
-import './xyz_address_picker_test_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
       ),
-      home: XYZAddressPickerTestPage(),
+      home: XYZCityPickerExamplePage(),
     );
   }
 }

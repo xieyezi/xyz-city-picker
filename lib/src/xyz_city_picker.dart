@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:xyz_address_picker/meta/city.dart';
-import 'package:xyz_address_picker/meta/meta.dart';
-import 'package:xyz_address_picker/meta/province.dart';
-import 'package:xyz_address_picker/meta/town.dart';
+import 'package:xyz_city_picker/meta/city.dart';
+import 'package:xyz_city_picker/meta/meta.dart';
+import 'package:xyz_city_picker/meta/province.dart';
+import 'package:xyz_city_picker/meta/town.dart';
 
 /// 省市区选择器(使用示例见address_manage)
-class AddressPicker extends StatefulWidget {
+class CityPicker extends StatefulWidget {
   /// 省
-  final String province;
+  final Map province;
 
   /// 市
-  final String city;
+  final Map city;
 
   /// 区
-  final String district;
+  final Map district;
 
   /// 选择事件
-  final Function(int, String, String) onChanged; // 参数分别为下标、id、name
-  AddressPicker({
+  final Function(int, Map) onChanged; // 参数分别为下标、id、name
+  CityPicker({
     Key key,
     @required this.onChanged,
     @required this.province,
@@ -27,10 +27,10 @@ class AddressPicker extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  AddressPickerState createState() => AddressPickerState();
+  CityPickerState createState() => CityPickerState();
 }
 
-class AddressPickerState extends State<AddressPicker> with SingleTickerProviderStateMixin {
+class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMixin {
   TabController _tabController;
   final ScrollController _controller = ScrollController();
   int _index = 0; // 当前下标
@@ -48,12 +48,16 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // initData();
       // 设置默认值
-      _myTabs[0] = Tab(text: widget.province == '' || widget.province == null ? '请选择' : widget.province);
-      _myTabs[1] = Tab(text: widget.city ?? '');
-      _myTabs[2] = Tab(text: widget.district ?? '');
+      _myTabs[0] =
+          Tab(text: (widget.province == null || widget.province['name'] == '') ? '请选择' : widget.province['name']);
+      _myTabs[1] = Tab(text: widget.city['name'] ?? '');
+      _myTabs[2] = Tab(text: widget.district['name'] ?? '');
       _provinceList = provincesData ?? [];
       _mList = provincesData ?? [];
+      _cityList = widget.city['name'] != '' ? findCityByProvinceName(widget.province['id']) : [];
+      _districtList = widget.district['name'] != '' ? findCountyByCity(widget.city['id']) : [];
       _tabController.animateTo(_index, duration: Duration(microseconds: 0));
+      setState(() {});
     });
   }
 
@@ -95,7 +99,6 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
       case 1:
         _mList = findCityByProvinceName(_mList[index]['id']);
         _cityList = _mList;
-        print(_mList);
         _myTabs[1] = Tab(text: '请选择');
         _myTabs[2] = Tab(text: '');
         setState(() {});
@@ -103,7 +106,6 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
       case 2:
         _mList = findCountyByCity(_mList[index]['id']);
         _districtList = _mList;
-        print(_mList);
         _myTabs[2] = Tab(text: '请选择');
         setState(() {});
         break;
@@ -117,7 +119,7 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
   // 选中某个tab
   void checkedTab(int index) {
     // 将选中的返回到父组件
-    widget.onChanged(_index, _mList[index]['id'], _mList[index]['name']);
+    widget.onChanged(_index, _mList[index]);
     this.setState(() {
       _myTabs[_index] = Tab(text: _mList[index]['name']);
       _positions[_index] = index;
@@ -159,7 +161,7 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
-                    '地址选择',
+                    '选择地址',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -191,8 +193,14 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
                     // 隐藏点击效果
                     color: Colors.white,
                     child: TabBar(
+                      tabs: _myTabs,
                       controller: _tabController,
                       isScrollable: true,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      indicatorColor: Color(0xFFB80821),
+                      unselectedLabelColor: Color(0xFF4A4A4A),
+                      labelColor: Color(0xFFB80821),
+                      labelPadding: EdgeInsets.symmetric(horizontal: 10),
                       onTap: (index) {
                         if (_myTabs[index].text.isEmpty) {
                           // 拦截点击事件
@@ -204,11 +212,6 @@ class AddressPickerState extends State<AddressPicker> with SingleTickerProviderS
                         _controller.animateTo(_positions[_index] * 48.0,
                             duration: Duration(milliseconds: 10), curve: Curves.ease);
                       },
-                      indicatorSize: TabBarIndicatorSize.label,
-                      indicatorColor: Color(0xFFB80821),
-                      unselectedLabelColor: Color(0xFF4A4A4A),
-                      labelColor: Color(0xFFB80821),
-                      tabs: _myTabs,
                     ),
                   ),
                   Divider(),

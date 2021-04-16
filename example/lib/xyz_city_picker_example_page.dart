@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:xyz_address_picker/xyz_address_picker.dart';
+import 'package:xyz_city_picker/xyz_city_picker.dart';
 
-class XYZAddressPickerTestPage extends StatelessWidget {
-  const XYZAddressPickerTestPage({
+class XYZCityPickerExamplePage extends StatelessWidget {
+  const XYZCityPickerExamplePage({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return XYZAddressPickerTestPageContainer();
+    return XYZCityPickerExamplePageContainer();
   }
 }
 
-class XYZAddressPickerTestPageContainer extends StatefulWidget {
-  const XYZAddressPickerTestPageContainer({Key key}) : super(key: key);
+class XYZCityPickerExamplePageContainer extends StatefulWidget {
+  const XYZCityPickerExamplePageContainer({Key key}) : super(key: key);
 
   @override
-  _XYZAddressPickerTestPageContainerState createState() => _XYZAddressPickerTestPageContainerState();
+  _XYZCityPickerExamplePageContainerState createState() => _XYZCityPickerExamplePageContainerState();
 }
 
-typedef MyOnChange = Function(int index, String id, String name);
+typedef MyOnChange = Function(int index, Map checkedItem);
 
-class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTestPageContainer> {
-  String province = '';
-  String city = '';
-  String street = '';
+class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExamplePageContainer> {
+  Map province = {
+    'name': '',
+    'id': '',
+  };
+  Map city = {
+    'name': '',
+    'id': '',
+  };
+  Map street = {
+    'name': '',
+    'id': '',
+  };
 
   @override
   void initState() {
@@ -56,24 +65,24 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
                   onTap: () => _showBottomSheet(
                     province: province,
                     city: city,
+                    street: street,
                     context: context,
-                    onChnage: (int index, String id, String name) {
-                      print('$index-$id-$name');
-
+                    onChnage: (int index, Map checkedItem) {
+                      print(checkedItem);
                       switch (index) {
                         case 0:
                           this.setState(() {
-                            province = name;
+                            province = checkedItem;
                           });
                           break;
                         case 1:
                           this.setState(() {
-                            city = name;
+                            city = checkedItem;
                           });
                           break;
                         case 2:
                           this.setState(() {
-                            street = name;
+                            street = checkedItem;
                           });
                           break;
                       }
@@ -90,7 +99,13 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
                           children: <Widget>[
                             Container(width: 70, child: Text('收货地址：', style: labelStyle)),
                             SizedBox(width: 30),
-                            Text(province == '' ? '选择所在地区' : province + city + street)
+                            Container(
+                              width: 200,
+                              child: Text(
+                                province['name'] == '' ? '选择所在地区' : province['name'] + city['name'] + street['name'],
+                                maxLines: 2,
+                              ),
+                            )
                           ],
                         ),
                         Container(
@@ -117,9 +132,9 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
 
   /// 省市区选择器
   void _showBottomSheet({
-    String province,
-    String city,
-    String street,
+    Map province,
+    Map city,
+    Map street,
     BuildContext context,
     MyOnChange onChnage,
   }) {
@@ -127,7 +142,7 @@ class _XYZAddressPickerTestPageContainerState extends State<XYZAddressPickerTest
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return AddressPicker(
+        return CityPicker(
           province: province,
           city: city,
           district: street,

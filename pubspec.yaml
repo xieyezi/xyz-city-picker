@@ -1,7 +1,7 @@
-name: xyz_address_picker
+name: xyz_city_picker
 description: A address picker based on flutter,supported both iOS and Android.
 version: 1.0.1
-homepage: https://github.com/xieyezi/xyz-address-picker
+homepage: https://github.com/xieyezi/xyz-city-picker
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
