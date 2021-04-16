@@ -5,7 +5,8 @@
 
 ### 效果预览
 
-![example](./screenshot/example.png){:height="50%" width="50%"}
+ <img src="./screenshot/example.png" width = "300" height = "200" alt="example" />
+
 
 ### 如何使用
 
