@@ -1,8 +1,6 @@
 # xyz_city_picker
 
-一个地址选择器
-
-**<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_city_picker/changelog)</u>**
+一个支持地图四级下钻的地址选择器
 
 
 ### 效果预览
@@ -10,7 +8,7 @@
 <a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" align="center" style="max-width:100%;"></a>
 
 ### 如何使用
-目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点这里去Pub官网查看](https://pub.dev/packages/xyz_city_picker)
+
 #### 添加xyz_city_picker
 打开pubspec.yaml文件
 添加如下代码
