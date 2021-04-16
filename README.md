@@ -5,7 +5,7 @@
 
 ### 效果预览
 
- <img src="./screenshot/example.png" width = "300" height = "200" alt="example" />
+ <img src="./screenshot/example.png" width = "375" height = "712" alt="example" />
 
 
 ### 如何使用
