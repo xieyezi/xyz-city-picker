@@ -1,7 +1,4 @@
-## [1.0.1] - [2020-07-16]
-* refactor code
-* add readme
-* add screenshot
 
-## [1.0.0] - [2020-07-16]
-* Custom address picker
+
+## [1.0.0] - [2021-04-16]
+* Custom city picker
