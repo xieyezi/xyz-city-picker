@@ -1,81 +1,78 @@
 # xyz_city_picker
 
-一个仿京东的flutter 地址选择器
+一个地址选择器
 
 **<u>[点这里查看版本更新记录](https://pub.dev/packages/xyz_city_picker/changelog)</u>**
 
 
-### 导航
-- [Gif效果图](#Gif效果图)
-- [如何使用](#如何使用)
-
-
-### Gif效果图
+### 效果预览
 
 <a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" align="center" style="max-width:100%;"></a>
 
 ### 如何使用
 目前已发布到Pub，你可以在Pub官网查看最新的版本和更新说明！[点这里去Pub官网查看](https://pub.dev/packages/xyz_city_picker)
-#### 1、添加xyz_city_picker package
+#### 添加xyz_city_picker
 打开pubspec.yaml文件
 添加如下代码
 ``` dart
-  xyz_city_picker : ^1.0.1
+  xyz_city_picker : ^1.0.0
 ```
-添加后打开Terminal，执行flutter packages get
+添加后打开`Terminal`，执行 `flutter packages get`
 
-#### 2、使用
+#### 代码中引入
+```dart
+import 'package:xyz_city_picker/xyz_city_picker.dart';
+```
 
-**强烈建议你先clone下本仓库，查看example目录的内容**
+
+#### 使用
+
+**建议先clone下仓库，查看example目录的示例**
 
 必须传入的参数有:
 
 | 参数         | 含义       | 类型                                |
 | ------------ | ---------- | ----------------------------------- |
-| province     | 选择的省份 | String                              |
-| city         | 选择的城市 | String                              |
-| street       | 选择的街道 | String                              |
-| provinceList | 省份列表   | {'name': "provinceName", 'id': '1'} |
-| cityList     | 城市列表   | {'name': "cityName", 'id': '1'}     |
-| districtList | 街道列表   | {'name': "districtName", 'id': '1'} |
+| province     | 选择的省份 | Map                              |
+| city         | 选择的城市 | Map                              |
+| district     | 选择的区县 | Map                              |
+| street       | 选择的街道 | Map                              |
 
-
-> 注意：xyz_city_picker 因为是弹出框，所以需要配合showModalBottomSheet使用
-使用如下：
+代码使用如下：
 ```dart
-  /// 省市区选择器
-  void _showBottomSheet({
-    String province,
-    String city,
-    String street,
-    List provinceList,
-    List cityList,
-    List streetList,
-    BuildContext context,
-    MyOnChange onChnage,
-  }) {
-    showModalBottomSheet(
+GestureDetector(
+  behavior: HitTestBehavior.translucent,
+  onTap: () => XYZCityPicker.showPicker(
+      province: province,
+      city: city,
+      district: district,
+      street: street,
       context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return AddressPicker(
-          province: province,
-          city: city,
-          district: street,
-          provinceList: provinceList,
-          cityList: cityList,
-          districtList: streetList,
-          onChanged: onChnage,
-        );
-      },
-    );
-  }
+      onChange: (int index, Map checkedItem) {
+        switch (index) {
+          case 0:
+           province = checkedItem;
+            break;
+          case 1:
+          city = checkedItem;
+            break;
+          case 2:
+          district = checkedItem;
+            break;
+          case 3:
+          street = checkedItem;
+            break;
+        }
+        setState(() {});
+      }),
+  child: Container()
+)
 ```
-在`AddressPicker`的`onChanged`回调函数里面把选择的值带回，`onChanged`的函数签名如下：
+在`onChanged`回调函数里面把选择的值带回，`onChanged`的函数签名如下：
 ```dart
-typedef MyOnChange = Function(int index, String id, String name);
+typedef OnChange = Function(int index, Map checkedItem);
 ```
-其中`index` 为`0`、`1`、`2`，分别标识`province`、`city`、`district` ，`id`和`name`则为对应的值。
+其中`index` 为`0`、`1`、`2`、`4`，分别标识`province`、`city`、`district`、`street` ，`checkedItem`则为选择的值.
 
 
 ### 如你想接收更新消息，你可以Watch下，有问题请提到Issues.

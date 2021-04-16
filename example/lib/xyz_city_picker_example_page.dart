@@ -73,26 +73,19 @@ class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExample
                       onChange: (int index, Map checkedItem) {
                         switch (index) {
                           case 0:
-                            this.setState(() {
-                              province = checkedItem;
-                            });
+                            province = checkedItem;
                             break;
                           case 1:
-                            this.setState(() {
-                              city = checkedItem;
-                            });
+                            city = checkedItem;
                             break;
                           case 2:
-                            this.setState(() {
-                              district = checkedItem;
-                            });
+                            district = checkedItem;
                             break;
                           case 3:
-                            this.setState(() {
-                              street = checkedItem;
-                            });
+                            street = checkedItem;
                             break;
                         }
+                        setState(() {});
                       }),
                   child: Container(
                     height: 50,
