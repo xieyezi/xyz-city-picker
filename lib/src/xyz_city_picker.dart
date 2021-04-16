@@ -5,12 +5,12 @@ typedef OnChange = Function(int index, Map checkedItem);
 
 class XYZCityPicker {
   static void showPicker({
-    Map province,
-    Map city,
-    Map district,
-    Map street,
-    BuildContext context,
-    OnChange onChange,
+    @required Map province,
+    @required Map city,
+    @required Map district,
+    @required Map street,
+    @required BuildContext context,
+    @required OnChange onChange,
   }) {
     showModalBottomSheet(
       context: context,
