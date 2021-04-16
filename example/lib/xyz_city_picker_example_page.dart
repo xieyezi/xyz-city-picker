@@ -19,14 +19,16 @@ class XYZCityPickerExamplePageContainer extends StatefulWidget {
   _XYZCityPickerExamplePageContainerState createState() => _XYZCityPickerExamplePageContainerState();
 }
 
-typedef MyOnChange = Function(int index, Map checkedItem);
-
 class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExamplePageContainer> {
   Map province = {
     'name': '',
     'id': '',
   };
   Map city = {
+    'name': '',
+    'id': '',
+  };
+  Map district = {
     'name': '',
     'id': '',
   };
@@ -62,32 +64,36 @@ class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExample
               children: <Widget>[
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap: () => _showBottomSheet(
-                    province: province,
-                    city: city,
-                    street: street,
-                    context: context,
-                    onChnage: (int index, Map checkedItem) {
-                      print(checkedItem);
-                      switch (index) {
-                        case 0:
-                          this.setState(() {
-                            province = checkedItem;
-                          });
-                          break;
-                        case 1:
-                          this.setState(() {
-                            city = checkedItem;
-                          });
-                          break;
-                        case 2:
-                          this.setState(() {
-                            street = checkedItem;
-                          });
-                          break;
-                      }
-                    },
-                  ),
+                  onTap: () => XYZCityPicker.showPicker(
+                      province: province,
+                      city: city,
+                      district: district,
+                      street: street,
+                      context: context,
+                      onChange: (int index, Map checkedItem) {
+                        switch (index) {
+                          case 0:
+                            this.setState(() {
+                              province = checkedItem;
+                            });
+                            break;
+                          case 1:
+                            this.setState(() {
+                              city = checkedItem;
+                            });
+                            break;
+                          case 2:
+                            this.setState(() {
+                              district = checkedItem;
+                            });
+                            break;
+                          case 3:
+                            this.setState(() {
+                              street = checkedItem;
+                            });
+                            break;
+                        }
+                      }),
                   child: Container(
                     height: 50,
                     padding: EdgeInsets.only(left: 15, right: 15),
@@ -102,7 +108,9 @@ class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExample
                             Container(
                               width: 200,
                               child: Text(
-                                province['name'] == '' ? '选择所在地区' : province['name'] + city['name'] + street['name'],
+                                province['name'] == ''
+                                    ? '选择所在地区'
+                                    : province['name'] + city['name'] + district['name'] + street['name'],
                                 maxLines: 2,
                               ),
                             )
@@ -127,28 +135,6 @@ class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExample
           ),
         ],
       ),
-    );
-  }
-
-  /// 省市区选择器
-  void _showBottomSheet({
-    Map province,
-    Map city,
-    Map street,
-    BuildContext context,
-    MyOnChange onChnage,
-  }) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return CityPicker(
-          province: province,
-          city: city,
-          district: street,
-          onChanged: onChnage,
-        );
-      },
     );
   }
 }
