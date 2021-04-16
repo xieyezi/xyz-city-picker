@@ -5,7 +5,7 @@
 
 ### 效果预览
 
-![example](./screenshot/example.png)
+![example](./screenshot/example.png){:height="50%" width="50%"}
 
 ### 如何使用
 
