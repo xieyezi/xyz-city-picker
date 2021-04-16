@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:xyz_city_picker/meta/city.dart';
-import 'package:xyz_city_picker/meta/meta.dart';
-import 'package:xyz_city_picker/meta/province.dart';
-import 'package:xyz_city_picker/meta/town.dart';
+import 'package:xyz_city_picker/data/city.dart';
+import 'package:xyz_city_picker/data/data.dart';
+import 'package:xyz_city_picker/data/province.dart';
+import 'package:xyz_city_picker/data/town.dart';
 
 /// 省市区选择器(使用示例见address_manage)
 class CityPicker extends StatefulWidget {
