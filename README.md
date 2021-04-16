@@ -5,7 +5,7 @@
 
 ### 效果预览
 
- <img src="./screenshot/example.png" width = "375" height = "712" alt="example" />
+ <img src="https://i.loli.net/2021/04/16/6rU4cEgL3hPOsmj.png" width = "375" height = "712" alt="example" />
 
 
 ### 如何使用
@@ -22,6 +22,7 @@
 ```dart
 import 'package:xyz_city_picker/xyz_city_picker.dart';
 ```
+
 
 
 #### 使用
