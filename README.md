@@ -5,7 +5,7 @@
 
 ### 效果预览
 
-<a target="_blank" rel="noopener noreferrer" href="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif"><img src="https://i.loli.net/2020/07/16/Y5rDLqWZUd2X3yw.gif" align="center" style="max-width:100%;"></a>
+![example](./screenshot/example.png)
 
 ### 如何使用
 
