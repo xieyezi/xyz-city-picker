@@ -31,12 +31,12 @@ import 'package:xyz_city_picker/xyz_city_picker.dart';
 
 必须传入的参数有:
 
-| 参数         | 含义       | 类型                                |
-| ------------ | ---------- | ----------------------------------- |
-| province     | 选择的省份 | Map                              |
-| city         | 选择的城市 | Map                              |
-| district     | 选择的区县 | Map                              |
-| street       | 选择的街道 | Map                              |
+| 参数         | 含义       | 类型            |  例子                    | 
+| ---------- - | ---------- | ------------- |  ---------------------  |
+| province     | 选择的省份 | Map             | {'name': '', 'id': ''}  |
+| city         | 选择的城市 | Map             | {'name': '', 'id': ''}  |
+| district     | 选择的区县 | Map             | {'name': '', 'id': ''}  |
+| street       | 选择的街道 | Map             | {'name': '', 'id': ''}  |
 
 代码使用如下：
 ```dart

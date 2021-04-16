@@ -20,10 +20,7 @@ class XYZCityPickerExamplePageContainer extends StatefulWidget {
 }
 
 class _XYZCityPickerExamplePageContainerState extends State<XYZCityPickerExamplePageContainer> {
-  Map province = {
-    'name': '',
-    'id': '',
-  };
+  Map province = {'name': '', 'id': ''};
   Map city = {
     'name': '',
     'id': '',
