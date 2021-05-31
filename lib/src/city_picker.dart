@@ -21,12 +21,12 @@ class CityPicker extends StatefulWidget {
   /// 选择事件
   final Function(int, Map) onChanged; // 参数分别为下标、id、name
   CityPicker({
-    Key key,
-    @required this.onChanged,
-    @required this.province,
-    @required this.city,
-    @required this.district,
-    @required this.street,
+    Key? key,
+    required this.onChanged,
+    required this.province,
+    required this.city,
+    required this.district,
+    required this.street,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class CityPicker extends StatefulWidget {
 }
 
 class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   final ScrollController _controller = ScrollController();
   int _index = 0; // 当前下标
   var _positions = [0, 0, 0, 0]; // 三级联动选择的position
@@ -49,7 +49,7 @@ class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMi
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: 4);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       _myTabs[0] =
           Tab(text: (widget.province == null || widget.province['name'] == '') ? '请选择' : widget.province['name']);
       _myTabs[1] = Tab(text: widget.city['name'] ?? '');
@@ -60,14 +60,14 @@ class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMi
       _cityList = widget.city['name'] != '' ? findCityByProvinceName(widget.province['id']) : [];
       _districtList = widget.district['name'] != '' ? findCountyByCity(widget.city['id']) : [];
       _streetList = widget.street['name'] != '' ? findStreetByCounty(widget.district['id']) : [];
-      _tabController.animateTo(_index, duration: Duration(microseconds: 0));
+      _tabController!.animateTo(_index, duration: Duration(microseconds: 0));
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -148,24 +148,24 @@ class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMi
       Navigator.pop(context);
     }
     _controller.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
-    _tabController.animateTo(_index);
+    _tabController!.animateTo(_index);
   }
 
   // 根据province寻找city
-  List findCityByProvinceName(String provinceId) {
-    List cityList = citiesData[provinceId] ?? [];
+  List findCityByProvinceName(String? provinceId) {
+    List cityList = citiesData[provinceId!] ?? [];
     return cityList;
   }
 
   // 根据city寻找county
-  List findCountyByCity(String cityId) {
-    List countyList = countiesData[cityId] ?? [];
+  List findCountyByCity(String? cityId) {
+    List countyList = countiesData[cityId!] ?? [];
     return countyList;
   }
 
 // 根据county寻找street
-  List findStreetByCounty(String countyId) {
-    List streetList = townsData[countyId] ?? [];
+  List findStreetByCounty(String? countyId) {
+    List streetList = townsData[countyId!] ?? [];
     return streetList;
   }
 
@@ -225,9 +225,9 @@ class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMi
                       labelColor: Color(0xFFB80821),
                       labelPadding: EdgeInsets.symmetric(horizontal: 10),
                       onTap: (index) {
-                        if (_myTabs[index].text.isEmpty) {
+                        if (_myTabs[index].text!.isEmpty) {
                           // 拦截点击事件
-                          _tabController.animateTo(_index);
+                          _tabController!.animateTo(_index);
                           return;
                         }
                         setList(index);

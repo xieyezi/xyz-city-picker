@@ -3,7 +3,7 @@ import 'package:xyz_city_picker/xyz_city_picker.dart';
 
 class XYZCityPickerExamplePage extends StatelessWidget {
   const XYZCityPickerExamplePage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -13,7 +13,7 @@ class XYZCityPickerExamplePage extends StatelessWidget {
 }
 
 class XYZCityPickerExamplePageContainer extends StatefulWidget {
-  const XYZCityPickerExamplePageContainer({Key key}) : super(key: key);
+  const XYZCityPickerExamplePageContainer({Key? key}) : super(key: key);
 
   @override
   _XYZCityPickerExamplePageContainerState createState() => _XYZCityPickerExamplePageContainerState();
