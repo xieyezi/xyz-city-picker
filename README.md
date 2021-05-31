@@ -16,7 +16,7 @@
 打开pubspec.yaml文件
 添加如下代码
 ``` dart
-  xyz_city_picker : ^2.0.0-nullsafety.0
+  xyz_city_picker : ^2.0.0-nullsafety
 ```
 添加后打开`Terminal`，执行 `flutter packages get`
 

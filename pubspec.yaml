@@ -1,6 +1,6 @@
 name: xyz_city_picker
 description: A city picker based on flutter,supported both iOS and Android.
-version: 2.0.0-nullsafety.0
+version: 2.0.0-nullsafety
 homepage: https://github.com/xieyezi/xyz-city-picker
 
 environment:

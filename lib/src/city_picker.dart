@@ -51,12 +51,12 @@ class CityPickerState extends State<CityPicker> with SingleTickerProviderStateMi
     _tabController = TabController(vsync: this, length: 4);
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       _myTabs[0] =
-          Tab(text: (widget.province == null || widget.province['name'] == '') ? '请选择' : widget.province['name']);
+          Tab(text:widget.province['name']== ''? '请选择':  widget.province['name']);
       _myTabs[1] = Tab(text: widget.city['name'] ?? '');
       _myTabs[2] = Tab(text: widget.district['name'] ?? '');
       _myTabs[3] = Tab(text: widget.street['name'] ?? '');
-      _provinceList = provincesData ?? [];
-      _mList = provincesData ?? [];
+      _provinceList = provincesData;
+      _mList = provincesData;
       _cityList = widget.city['name'] != '' ? findCityByProvinceName(widget.province['id']) : [];
       _districtList = widget.district['name'] != '' ? findCountyByCity(widget.city['id']) : [];
       _streetList = widget.street['name'] != '' ? findStreetByCounty(widget.district['id']) : [];
