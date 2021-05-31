@@ -1,4 +1,4 @@
-## [2.0.0-nullsafety] - [2021-05-31]
+## [2.0.0-nullsafety.0] - [2021-05-31]
 * migrate to null-safety
   
 
